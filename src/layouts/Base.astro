@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { etichette, gemella, type Lingua } from '../lib/i18n';
+import { etichette, gemella, collega, percorsoLogico, type Lingua } from '../lib/i18n';
 
 interface Props {
   lingua: Lingua;
@@ -10,8 +10,8 @@ interface Props {
 
 const { lingua, titolo, descrizione } = Astro.props;
 const t = etichette[lingua];
-const qui = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : Astro.url.pathname + '/';
-const altra = gemella[qui];
+const qui = percorsoLogico(Astro.url.pathname);
+const altra = gemella[qui] ? collega(gemella[qui]) : undefined;
 const anno = new Date().getFullYear();
 ---
 
@@ -33,14 +33,15 @@ const anno = new Date().getFullYear();
   <body>
     <div class="guscio">
       <header class="testata">
-        <a class="marchio" href={lingua === 'it' ? '/' : '/en/'}>
+        <a class="marchio" href={collega(lingua === 'it' ? '/' : '/en/')}>
           <strong>Musica elettronica</strong>
           <span>Conservatorio Luca Marenzio · Brescia</span>
         </a>
         <p class="lingue">
-          <a href={lingua === 'it' ? qui : altra ?? '/'} aria-current={lingua === 'it'}>IT</a>/<a
-            href={lingua === 'en' ? qui : altra ?? '/en/'}
-            aria-current={lingua === 'en'}>EN</a
+          <a href={lingua === 'it' ? collega(qui) : altra ?? collega('/')} aria-current={lingua === 'it'}
+            >IT</a
+          >/<a href={lingua === 'en' ? collega(qui) : altra ?? collega('/en/')} aria-current={lingua === 'en'}
+            >EN</a
           >
         </p>
       </header>
@@ -48,7 +49,7 @@ const anno = new Date().getFullYear();
       <nav class="nav">
         {
           t.nav.map((v) => (
-            <a href={v.href} aria-current={qui === v.href ? 'page' : undefined}>
+            <a href={collega(v.href)} aria-current={qui === v.href ? 'page' : undefined}>
               {v.testo}
             </a>
           ))

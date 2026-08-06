@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { etichette } from '../../lib/i18n';
+import { etichette, collega } from '../../lib/i18n';
 import { frontmatter, Content } from '../../contenuti/pagine/corsi.en.md';
 
 const lingua = 'en' as const;
@@ -25,5 +25,5 @@ const t = etichette[lingua];
   <ul class="aree">
     {frontmatter.aree.map((a) => <li>{a}</li>)}
   </ul>
-  <p><a href={frontmatter.piano_url}>{frontmatter.piano_testo}</a></p>
+  <p><a href={collega(frontmatter.piano_url)}>{frontmatter.piano_testo}</a></p>
 </Base>

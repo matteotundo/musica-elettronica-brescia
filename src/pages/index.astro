@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import ElencoEventi from '../components/ElencoEventi.astro';
 import { prossimi } from '../lib/eventi';
-import { etichette } from '../lib/i18n';
+import { etichette, collega } from '../lib/i18n';
 import { frontmatter, Content } from '../contenuti/pagine/home.it.md';
 
 const lingua = 'it' as const;
@@ -14,5 +14,5 @@ const t = etichette[lingua];
   <Content />
   <p class="occhiello" style="margin-top: 2.5rem">{t.prossimi}</p>
   <ElencoEventi eventi={prossimi(3)} lingua={lingua} vuoto={t.nessuno} />
-  <p style="margin-top: 1.25rem"><a href={t.nav[2].href}>{t.altroLink} →</a></p>
+  <p style="margin-top: 1.25rem"><a href={collega(t.nav[2].href)}>{t.altroLink} →</a></p>
 </Base>
