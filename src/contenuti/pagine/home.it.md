@@ -1,5 +1,5 @@
 ---
-titolo: "Musica elettronica — Conservatorio Luca Marenzio, Brescia"
+titolo: "MUSICA ELETTRONICA per le arti intermediali — Conservatorio Luca Marenzio, Brescia"
 descrizione: "Il dipartimento di Musica elettronica del Conservatorio Luca Marenzio di Brescia: corsi di triennio e biennio, concerti, masterclass e ricerca."
 apertura: "Un luogo dove la composizione, l'ascolto e la tecnologia si studiano insieme."
 ---
