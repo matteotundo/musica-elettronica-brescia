@@ -10,7 +10,7 @@ const t = etichette[lingua];
 ---
 
 <Base lingua={lingua} titolo={frontmatter.titolo} descrizione={frontmatter.descrizione}>
-  <p class="apertura">{frontmatter.apertura}</p>
+  {frontmatter.apertura && <p class="apertura">{frontmatter.apertura}</p>}
   <Content />
   <p class="occhiello" style="margin-top: 2.5rem">{t.prossimi}</p>
   <ElencoEventi eventi={prossimi(3)} lingua={lingua} vuoto={t.nessuno} />
