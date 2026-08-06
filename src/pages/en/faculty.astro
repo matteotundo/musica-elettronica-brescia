@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import { frontmatter, Content } from '../../contenuti/pagine/docenti.en.md';
+
+const lingua = 'en' as const;
+---
+
+<Base lingua={lingua} titolo={frontmatter.titolo} descrizione={frontmatter.descrizione}>
+  <h1>{frontmatter.intestazione}</h1>
+  <Content />
+</Base>

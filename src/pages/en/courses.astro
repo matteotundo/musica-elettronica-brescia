@@ -1,0 +1,29 @@
+---
+import Base from '../../layouts/Base.astro';
+import { etichette } from '../../lib/i18n';
+import { frontmatter, Content } from '../../contenuti/pagine/corsi.en.md';
+
+const lingua = 'en' as const;
+const t = etichette[lingua];
+---
+
+<Base lingua={lingua} titolo={frontmatter.titolo} descrizione={frontmatter.descrizione}>
+  <h1>{frontmatter.intestazione}</h1>
+  <Content />
+  <div class="corsi">
+    {
+      frontmatter.corsi.map((c) => (
+        <article class="corso">
+          <p class="codice">{c.codice}</p>
+          <h3>{c.nome}</h3>
+          <p>{c.testo}</p>
+        </article>
+      ))
+    }
+  </div>
+  <p class="occhiello" style="margin-top: 2rem">{t.aree}</p>
+  <ul class="aree">
+    {frontmatter.aree.map((a) => <li>{a}</li>)}
+  </ul>
+  <p><a href={frontmatter.piano_url}>{frontmatter.piano_testo}</a></p>
+</Base>

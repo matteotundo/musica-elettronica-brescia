@@ -1,0 +1,36 @@
+---
+import { quando, titolo, nota, type Evento } from '../lib/eventi';
+import type { Lingua } from '../lib/i18n';
+
+interface Props {
+  eventi: Evento[];
+  lingua: Lingua;
+  passato?: boolean;
+  vuoto?: string;
+}
+
+const { eventi, lingua, passato = false, vuoto } = Astro.props;
+---
+
+{
+  eventi.length === 0 && vuoto ? (
+    <p class="vuoto">{vuoto}</p>
+  ) : (
+    eventi.map((e) => (
+      <article class={passato ? 'evento passato' : 'evento'}>
+        <p class="quando">
+          {quando(e, lingua).map((riga, i) => (
+            <>
+              {i > 0 && <br />}
+              {riga}
+            </>
+          ))}
+        </p>
+        <div>
+          <p class="titolo">{titolo(e, lingua)}</p>
+          {nota(e, lingua) && <p class="dove">{nota(e, lingua)}</p>}
+        </div>
+      </article>
+    ))
+  )
+}

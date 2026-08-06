@@ -1,0 +1,68 @@
+---
+import '../styles/global.css';
+import { etichette, gemella, type Lingua } from '../lib/i18n';
+
+interface Props {
+  lingua: Lingua;
+  titolo: string;
+  descrizione?: string;
+}
+
+const { lingua, titolo, descrizione } = Astro.props;
+const t = etichette[lingua];
+const qui = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : Astro.url.pathname + '/';
+const altra = gemella[qui];
+const anno = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang={lingua}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titolo}</title>
+    {descrizione && <meta name="description" content={descrizione} />}
+    {altra && <link rel="alternate" hreflang={lingua === 'it' ? 'en' : 'it'} href={altra} />}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Serif:wght@400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="guscio">
+      <header class="testata">
+        <a class="marchio" href={lingua === 'it' ? '/' : '/en/'}>
+          <strong>Musica elettronica</strong>
+          <span>Conservatorio Luca Marenzio · Brescia</span>
+        </a>
+        <p class="lingue">
+          <a href={lingua === 'it' ? qui : altra ?? '/'} aria-current={lingua === 'it'}>IT</a>/<a
+            href={lingua === 'en' ? qui : altra ?? '/en/'}
+            aria-current={lingua === 'en'}>EN</a
+          >
+        </p>
+      </header>
+
+      <nav class="nav">
+        {
+          t.nav.map((v) => (
+            <a href={v.href} aria-current={qui === v.href ? 'page' : undefined}>
+              {v.testo}
+            </a>
+          ))
+        }
+      </nav>
+
+      <main>
+        <slot />
+      </main>
+
+      <footer class="piede">
+        <p>{t.sede}</p>
+        <p>© {anno}</p>
+      </footer>
+    </div>
+  </body>
+</html>

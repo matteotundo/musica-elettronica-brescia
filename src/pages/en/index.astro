@@ -1,0 +1,18 @@
+---
+import Base from '../../layouts/Base.astro';
+import ElencoEventi from '../../components/ElencoEventi.astro';
+import { prossimi } from '../../lib/eventi';
+import { etichette } from '../../lib/i18n';
+import { frontmatter, Content } from '../../contenuti/pagine/home.en.md';
+
+const lingua = 'en' as const;
+const t = etichette[lingua];
+---
+
+<Base lingua={lingua} titolo={frontmatter.titolo} descrizione={frontmatter.descrizione}>
+  <p class="apertura">{frontmatter.apertura}</p>
+  <Content />
+  <p class="occhiello" style="margin-top: 2.5rem">{t.prossimi}</p>
+  <ElencoEventi eventi={prossimi(3)} lingua={lingua} vuoto={t.nessuno} />
+  <p style="margin-top: 1.25rem"><a href={t.nav[2].href}>{t.altroLink} →</a></p>
+</Base>

@@ -1,0 +1,172 @@
+:root {
+  --carta: #fcfcfa;
+  --inchiostro: #17171b;
+  --tenue: #6b6b70;
+  --filo: #e3e3dd;
+  --filo-forte: #c9c9c2;
+  --segnale: #2340d8;
+
+  --sans: "IBM Plex Sans", system-ui, sans-serif;
+  --serif: "IBM Plex Serif", Georgia, serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --misura: 34em;
+  --largo: 46rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--carta);
+  color: var(--inchiostro);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.65;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+.guscio {
+  max-width: var(--largo);
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+a { color: var(--segnale); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { text-decoration-thickness: 2px; }
+
+:focus-visible { outline: 2px solid var(--segnale); outline-offset: 3px; }
+
+h1, h2, h3 { font-weight: 500; line-height: 1.25; letter-spacing: -0.015em; }
+h1 { font-size: 1.5rem; margin: 0 0 1rem; }
+h2 { font-size: 1.1875rem; margin: 2.5rem 0 0.75rem; }
+h3 { font-size: 1rem; margin: 1.5rem 0 0.25rem; }
+
+p { margin: 0 0 1rem; max-width: var(--misura); }
+
+/* ---------- testata ---------- */
+
+.testata {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--filo-forte);
+}
+
+.marchio { text-decoration: none; color: inherit; display: block; }
+.marchio strong { display: block; font-size: 1.0625rem; font-weight: 500; letter-spacing: -0.02em; }
+.marchio span {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  color: var(--tenue);
+  letter-spacing: 0.02em;
+  margin-top: 0.15rem;
+}
+
+.lingue { font-family: var(--mono); font-size: 0.75rem; color: var(--filo-forte); }
+.lingue a { color: var(--tenue); text-decoration: none; padding: 0 0.15rem; }
+.lingue a[aria-current="true"] { color: var(--inchiostro); }
+.lingue a:hover { color: var(--segnale); }
+
+/* ---------- navigazione ---------- */
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--filo);
+}
+.nav a {
+  color: var(--tenue);
+  text-decoration: none;
+  font-size: 0.9375rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid transparent;
+  margin-bottom: -1px;
+}
+.nav a:hover { color: var(--inchiostro); }
+.nav a[aria-current="page"] { color: var(--inchiostro); border-bottom-color: var(--inchiostro); }
+
+/* ---------- apertura ---------- */
+
+.apertura {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  line-height: 1.35;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  max-width: 19em;
+  margin: 0 0 1.25rem;
+}
+
+.occhiello {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tenue);
+  margin: 0 0 0.5rem;
+}
+
+/* ---------- eventi ---------- */
+
+.evento {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: 1.25rem;
+  padding: 0.9rem 0;
+  border-top: 1px solid var(--filo);
+}
+.evento:last-child { border-bottom: 1px solid var(--filo); }
+.evento .quando {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--tenue);
+  line-height: 1.5;
+  padding-top: 0.2rem;
+  white-space: nowrap;
+}
+.evento .titolo { margin: 0; font-size: 1rem; max-width: none; }
+.evento .dove { margin: 0.1rem 0 0; font-size: 0.875rem; color: var(--tenue); max-width: none; }
+.evento.passato .titolo, .evento.passato .quando, .evento.passato .dove { color: var(--tenue); }
+
+.vuoto { color: var(--tenue); font-size: 0.9375rem; padding: 1rem 0; border-top: 1px solid var(--filo); }
+
+/* ---------- corsi ---------- */
+
+.corsi { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); margin-bottom: 1rem; }
+.corso { border: 1px solid var(--filo); padding: 1rem 1.1rem; }
+.corso .codice { font-family: var(--mono); font-size: 0.6875rem; color: var(--tenue); margin: 0; }
+.corso h3 { margin: 0.2rem 0 0.5rem; }
+.corso p { margin: 0; font-size: 0.9375rem; color: var(--tenue); max-width: none; }
+
+.aree { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; padding: 0; margin: 0 0 1.5rem; }
+.aree li { border: 1px solid var(--filo); padding: 0.2rem 0.6rem; font-size: 0.875rem; color: var(--tenue); }
+
+/* ---------- piede ---------- */
+
+.piede {
+  margin-top: 4rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--filo);
+  font-size: 0.8125rem;
+  color: var(--tenue);
+}
+.piede p { max-width: none; margin: 0 0 0.25rem; }
+
+@media (max-width: 30rem) {
+  .apertura { font-size: 1.35rem; }
+  .evento { grid-template-columns: 4.5rem minmax(0, 1fr); gap: 0.9rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

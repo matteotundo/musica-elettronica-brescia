@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import ElencoEventi from '../components/ElencoEventi.astro';
+import { prossimi, passati } from '../lib/eventi';
+import { etichette } from '../lib/i18n';
+import { frontmatter } from '../contenuti/pagine/eventi.it.md';
+
+const lingua = 'it' as const;
+const t = etichette[lingua];
+const archivio = passati();
+---
+
+<Base lingua={lingua} titolo={frontmatter.titolo} descrizione={frontmatter.descrizione}>
+  <h1>{frontmatter.intestazione}</h1>
+  <p class="occhiello" style="margin-top: 2rem">{t.prossimi}</p>
+  <ElencoEventi eventi={prossimi()} lingua={lingua} vuoto={t.nessuno} />
+  {
+    archivio.length > 0 && (
+      <>
+        <p class="occhiello" style="margin-top: 2.5rem">
+          {t.archivio}
+        </p>
+        <ElencoEventi eventi={archivio} lingua={lingua} passato />
+      </>
+    )
+  }
+</Base>
